@@ -20,6 +20,7 @@ import ast
 from minorminer import find_embedding  # There's no reason to reinvent the wheel if there's already a library
 # End import
 
+
 # Start defining functions
 def read_file_into_list(file_name):  # Example: graphs.txt
     with open(file_name, "r") as data_file:
@@ -46,6 +47,7 @@ def read_file_into_list(file_name):  # Example: graphs.txt
 
     return data  # Return the data, so it can be assigned to a difference var later
 
+
 def test_data():
     # Data from the minorminer page. A square graph is a minor of a triangle graph.
     list_of_graphs_to_check = read_file_into_list("squaregraphs.txt")
@@ -59,6 +61,7 @@ def test_data():
     print("This should be 3: " + str(len(embedding)))  # 3, one set for each variable in the triangle
     embedding = find_embedding(triangle, square2)
     print("This should be 3: " + str(len(embedding)))  # 3, one set for each variable in the triangle
+
 
 def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='with.txt', output_without_file='without.txt'):
     # Without the output_with_file or output_without_file specified it will default to those values
@@ -97,6 +100,7 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
           + " and input_minors_textfile: " + input_minors_textfile +
           "\nCheck: " + output_with_file + " and " + output_without_file)
 
+
 # Main method
 if __name__ == '__main__':
     # Reminder don't run all of these at the same time bc the output files are the same and will be overriden
@@ -109,7 +113,7 @@ if __name__ == '__main__':
     #sort_graphs("squaregraphs.txt", "graphb.txt")
     # Square graphs aren't a minor of a k5 with 3 more edges. Both graphs should be in the without.txt
 
-    #sort_graphs("mixedtest.txt", "k5.txt")
+    sort_graphs("mixedtest.txt", "k5.txt")
     # Mixed test contains two square and a k5 with 3 more edges
     # So the graph with a corresponding minor is the k5 with 3 more edges, both squares should be in the without.
 
