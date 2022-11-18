@@ -70,18 +70,21 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
     list_of_graphs_with_minors = []
     list_of_graphs_with_no_minors = []
 
-    for test_graph in list_of_graphs_to_check: # Loop through the test graphs
+    for test_graph in list_of_graphs_to_check:  # Loop through the test graphs
         #print("Test Graph: " + str(test_graph))
-        for minor_graph in list_of_minors: # For each of the test graphs, run though the minors and test if it in there,
+        for minor_graph in list_of_minors: # For each of the test graphs, run through the minors and test if its in there.
             #print("Test Minor: " + str(minor_graph))
             if len(find_embedding(minor_graph, test_graph)) > 0:
                 #print(str(test_graph) + " is a minor of " + str(minor_graph))
-                list_of_graphs_with_minors.append(test_graph)
-            else:
-                #print(str(test_graph) + " is a NOT minor of " + str(minor_graph))
-                list_of_graphs_with_no_minors.append(test_graph)
+                list_of_graphs_with_minors.append(test_graph)  # Add it to the list
+                list_of_graphs_to_check.remove(test_graph)  # Then remove it because there's no reason to check it again
         # END OF MINOR GRAPH FOR LOOP
     # END OF TEST GRAPH FOR LOOP
+
+    # The remaining graphs in the list DON'T have minors
+    for graph in list_of_graphs_to_check:
+        list_of_graphs_with_no_minors.append(graph)
+    # END OF FOR LOOP
 
     print("list_of_graphs_with_minors:")
     print(list_of_graphs_with_minors)
@@ -113,7 +116,10 @@ if __name__ == '__main__':
     #sort_graphs("squaregraphs.txt", "graphb.txt")
     # Square graphs aren't a minor of a k5 with 3 more edges. Both graphs should be in the without.txt
 
-    sort_graphs("mixedtest.txt", "k5.txt")
+    #sort_graphs("mixedtest.txt", "k5.txt")
     # Mixed test contains two square and a k5 with 3 more edges
     # So the graph with a corresponding minor is the k5 with 3 more edges, both squares should be in the without.
 
+    sort_graphs("mixedtest2.txt", "forbidden_minors_planar_graphs.txt")
+    # Contains a point, line, triangle, graphb, k2,3, k3,3.
+    # So theres only two graphs with a forbidden minor: graphb a k5 with 3 more edge and k3,3.
