@@ -4,20 +4,19 @@
     selects those which have no minors in minors.g6 and outputs them to without.g6, and outputs the rest in with.g6.
     The program should have enough comments so that someone like me could understand the code.
 """
+
+# Import libraries
 import ast
-
 from minorminer import find_embedding  # There's no reason to reinvent the wheel if there's already a library
+# End import
 
-list_of_graphs_to_check = []
-
-
+# Start defining functions
 def read_file_into_list(file_name):  # Example: graphs.txt
     with open(file_name, "r") as data_file:
         data = []  # Used to append during the reading
-        for line in data_file: #
+        for line in data_file:
             data.append(ast.literal_eval(line))  # Read in the lines correctly as a list
-            # Must be interpreted correctly, or it will be cast as a string and will not work with
-            # minorminor.
+            # Must be interpreted correctly, or it will be cast as a string and will not work with minorminer.
         # End of for loop
     # End of the open file call
 
@@ -38,6 +37,7 @@ def read_file_into_list(file_name):  # Example: graphs.txt
     return data  # Return the data, so it can be assigned to a difference var later
 
 def test_data():
+    # Data from the minorminer page. A square graph is a minor of a triangle graph.
     list_of_graphs_to_check = read_file_into_list("squaregraphs.txt")
     list_of_minors = read_file_into_list("trianglegraphs.txt")
 
@@ -46,13 +46,41 @@ def test_data():
     triangle = list_of_minors[0]
 
     embedding = find_embedding(triangle, square)
-    print(len(embedding))  # 3, one set for each variable in the triangle
+    print("This should be 3: " + str(len(embedding)))  # 3, one set for each variable in the triangle
     embedding = find_embedding(triangle, square2)
-    print(len(embedding))  # 3, one set for each variable in the triangle
+    print("This should be 3: " + str(len(embedding)))  # 3, one set for each variable in the triangle
+
+
+def sort_graphs(input_graphs_textfile, input_minors_textfile):
+    list_of_graphs_to_check = read_file_into_list(input_graphs_textfile)
+    list_of_minors = read_file_into_list(input_minors_textfile)
+    list_of_graphs_with_no_minors = []
+    list_of_graphs_with_minors = []
+
+    for test_graph in list_of_graphs_to_check: # Loop through the test graphs
+        #print("Test Graph: " + str(test_graph))
+        for minor_graph in list_of_minors: # For each of the test graphs, run though the minors and test if it in there,
+            #print("Test Minor: " + str(minor_graph))
+            if len(find_embedding(minor_graph, test_graph)) > 0:
+                #print(str(test_graph) + " is a minor of " + str(minor_graph))
+                list_of_graphs_with_minors.append(test_graph)
+            else:
+                #print(str(test_graph) + " is a NOT minor of " + str(minor_graph))
+                list_of_graphs_with_no_minors.append(test_graph)
+    print("list_of_graphs_with_minors:")
+    print(list_of_graphs_with_minors)
+    print("list_of_graphs_with_no_minors:")
+    print(list_of_graphs_with_no_minors)
+
+
+
+
 
 # Run once in main
 if __name__ == '__main__':
-    test_data()
+    #test_data()
+    #sort_graphs("squaregraphs.txt", "trianglegraphs.txt")
+    sort_graphs("squaregraphs.txt", "graphb.txt")
 
 
 
