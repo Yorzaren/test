@@ -27,4 +27,5 @@ python run_script.py "Graphs/mixedtest2.txt" "Graphs/forbidden_minors_planar_gra
 
 Optinal define the name of the output files. 
 ```
-python run_script.py "Graphs/mixedtest2.txt" "Graphs/forbidden_minors_planar_graphs.txt" --output-with "graphswithminors.txt" --output-without "graphswithoutminors.txt"```
+python run_script.py "Graphs/mixedtest2.txt" "Graphs/forbidden_minors_planar_graphs.txt" --output-with "graphswithminors.txt" --output-without "graphswithoutminors.txt"
+```
