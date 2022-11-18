@@ -1,8 +1,18 @@
 """
-1. Write out a Mathematica or C++ or Python or Java code  which takes as inputs two .g6 files "list.g6" and "minors.g6"
-    and outputs two other files "with.g6" and "without.g6". The program checks all the graphs in list.g6 and
-    selects those which have no minors in minors.g6 and outputs them to without.g6, and outputs the rest in with.g6.
-    The program should have enough comments so that someone like me could understand the code.
+
+    USE: sort_graphs(input_graphs_textfile, input_minors_textfile)
+
+    Code takes in .txt files to test
+
+
+    Graphs are written in the form of [(0,1),(1,2),(2,3)] which would correspond to a triangle shapes graph
+    To have multiple graphs in a file separate them with a single line break DONT add a comma to the end of the line
+
+    SEE: squaregraphs.txt and mixedtest.txt
+
+    The output is written into two files:
+     - "with.txt" (graphs that have a minor in the given input file)
+     - "without.txt" (graphs without a minor in the given input file)
 """
 
 # Import libraries
@@ -50,8 +60,8 @@ def test_data():
     embedding = find_embedding(triangle, square2)
     print("This should be 3: " + str(len(embedding)))  # 3, one set for each variable in the triangle
 
-
-def sort_graphs(input_graphs_textfile, input_minors_textfile):
+def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='with.txt', output_without_file='without.txt'):
+    # Without the output_with_file or output_without_file specified it will default to those values
     list_of_graphs_to_check = read_file_into_list(input_graphs_textfile)
     list_of_minors = read_file_into_list(input_minors_textfile)
     list_of_graphs_with_minors = []
@@ -70,36 +80,36 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile):
         # END OF MINOR GRAPH FOR LOOP
     # END OF TEST GRAPH FOR LOOP
 
-
     print("list_of_graphs_with_minors:")
     print(list_of_graphs_with_minors)
     print("list_of_graphs_with_no_minors:")
     print(list_of_graphs_with_no_minors)
 
-
     # Write the output to the files
-    with open(r'with.txt', 'w') as fp:
+    with open(output_with_file, 'w') as fp:
         for item in list_of_graphs_with_minors:
-            # write each item on a new line
-            fp.write("%s\n" % item)
-    with open(r'without.txt', 'w') as fp:
+            fp.write("%s\n" % item)  # Each item printed onto a newline
+    with open(output_without_file, 'w') as fp:
         for item in list_of_graphs_with_no_minors:
-            # write each item on a new line
             fp.write("%s\n" % item)
     # END file write
+    print("Graph sorting has finished.\nInputs were input_graphs_textfile: " + input_graphs_textfile
+          + " and input_minors_textfile: " + input_minors_textfile +
+          "\nCheck: " + output_with_file + " and " + output_without_file)
 
-
-# Run once in main
+# Main method
 if __name__ == '__main__':
-    #test_data()
+    # Reminder don't run all of these at the same time bc the output files are the same and will be overriden
+    # by the last call.
+
+    # Command sort_graphs(input_graphs_textfile, input_minors_textfile)
     #sort_graphs("squaregraphs.txt", "trianglegraphs.txt")
-    sort_graphs("squaregraphs.txt", "graphb.txt")
+    # A square graph has a minor of a triangle so both graphs should be in the with.txt
 
+    #sort_graphs("squaregraphs.txt", "graphb.txt")
+    # Square graphs aren't a minor of a k5 with 3 more edges. Both graphs should be in the without.txt
 
+    #sort_graphs("mixedtest.txt", "k5.txt")
+    # Mixed test contains two square and a k5 with 3 more edges
+    # So the graph with a corresponding minor is the k5 with 3 more edges, both squares should be in the without.
 
-
-
-
-#
-#test = [[(0, 1), (0, 2), (1, 3), (2, 3)], [(0, 1), (1, 2), (2, 3), (3, 0)]]
-#print(type(test[0][0][0]))
