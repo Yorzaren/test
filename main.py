@@ -48,10 +48,15 @@ def read_file_into_list(file_name):  # Example: graphs.txt
     return data  # Return the data, so it can be assigned to a difference var later
 
 
+"""
+Note: Only test_data() call if you suspect there to be an issue with the file read in.
+"""
+
+
 def test_data():
     # Data from the minorminer page. A square graph is a minor of a triangle graph.
-    list_of_graphs_to_check = read_file_into_list("squaregraphs.txt")
-    list_of_minors = read_file_into_list("trianglegraphs.txt")
+    list_of_graphs_to_check = read_file_into_list("Graphs/squaregraphs.txt")
+    list_of_minors = read_file_into_list("Graphs/trianglegraphs.txt")
 
     square = list_of_graphs_to_check[0]
     square2 = list_of_graphs_to_check[1]
@@ -60,7 +65,7 @@ def test_data():
     embedding = find_embedding(triangle, square)
     print("This should be 3: " + str(len(embedding)))  # 3, one set for each variable in the triangle
     embedding = find_embedding(triangle, square2)
-    print("This should be 3: " + str(len(embedding)))  # 3, one set for each variable in the triangle
+    print("This should also be 3: " + str(len(embedding)))  # 3, one set for each variable in the triangle
 
 
 def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='with.txt', output_without_file='without.txt'):
@@ -106,20 +111,24 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
 
 # Main method
 if __name__ == '__main__':
+    # Just keep this here because it throws error when everything is commented out
+    print("Main Method of main.py reached")
+
     # Reminder don't run all of these at the same time bc the output files are the same and will be overriden
     # by the last call.
 
+
     # Command sort_graphs(input_graphs_textfile, input_minors_textfile)
-    #sort_graphs("squaregraphs.txt", "trianglegraphs.txt")
+    #sort_graphs("Graphs/squaregraphs.txt", "Graphs/trianglegraphs.txt")
     # A square graph has a minor of a triangle so both graphs should be in the with.txt
 
-    #sort_graphs("squaregraphs.txt", "graphb.txt")
+    #sort_graphs("Graphs/squaregraphs.txt", "Graphs/graphb.txt")
     # Square graphs aren't a minor of a k5 with 3 more edges. Both graphs should be in the without.txt
 
-    #sort_graphs("mixedtest.txt", "k5.txt")
+    #sort_graphs("Graphs/mixedtest.txt", "Graphs/k5.txt")
     # Mixed test contains two square and a k5 with 3 more edges
     # So the graph with a corresponding minor is the k5 with 3 more edges, both squares should be in the without.
 
-    sort_graphs("mixedtest2.txt", "forbidden_minors_planar_graphs.txt")
+    #sort_graphs("Graphs/mixedtest2.txt", "Graphs/forbidden_minors_planar_graphs.txt")
     # Contains a point, line, triangle, graphb, k2,3, k3,3.
-    # So theres only two graphs with a forbidden minor: graphb a k5 with 3 more edge and k3,3.
+    # So there's only two graphs with a forbidden minor: graphb a k5 with 3 more edge and k3,3.
