@@ -19,24 +19,27 @@ def read_file_into_list(file_name):  # Example: graphs.txt
             # Must be interpreted correctly, or it will be cast as a string and will not work with
             # minorminor.
         # End of for loop
-        return data  # Return the data, so it can be assigned to a difference var later
+    # End of the open file call
 
-
-# Run once in main
-if __name__ == '__main__':
-    list_of_graphs_to_check = read_file_into_list("testgraphs.txt")
-    list_of_minors = read_file_into_list("minors.txt")
-
-    ### DEBUGGING TEXT to check if the data is being read correctly ###
+    ### DEBUGGING TEXT ###
     # Check that the list_of_graphs_to_check is a list
-    print("The value of list_of_graphs_to_check:")
-    print(list_of_graphs_to_check)
+    #print("The value of data:")
+    #print(data)
 
     # Check the type of list_of_graphs_to_check is a list
-    print("Check that list_of_graphs_to_check is a list: " + str(isinstance(list_of_graphs_to_check, list)))
+    #print("Check that data is a list: " + str(isinstance(data, list)))
 
     # Check that the things within are tuples
-    print("list_of_graphs_to_check[0][0]) is a tuple: " + str(isinstance(list_of_graphs_to_check[0][0], tuple)))
+    #print("data[0][0]) is a tuple: " + str(isinstance(data[0][0], tuple)))
+
+    if isinstance(data, list) == False or isinstance(data[0][0], tuple) == False:
+        raise ValueError('DevMessage: The data wasnt read in correctly, check the debug text.')
+
+    return data  # Return the data, so it can be assigned to a difference var later
+
+def test_data():
+    list_of_graphs_to_check = read_file_into_list("squaregraphs.txt")
+    list_of_minors = read_file_into_list("trianglegraphs.txt")
 
     square = list_of_graphs_to_check[0]
     square2 = list_of_graphs_to_check[1]
@@ -46,6 +49,12 @@ if __name__ == '__main__':
     print(len(embedding))  # 3, one set for each variable in the triangle
     embedding = find_embedding(triangle, square2)
     print(len(embedding))  # 3, one set for each variable in the triangle
+
+# Run once in main
+if __name__ == '__main__':
+    test_data()
+
+
 
 
 
