@@ -54,8 +54,8 @@ def test_data():
 def sort_graphs(input_graphs_textfile, input_minors_textfile):
     list_of_graphs_to_check = read_file_into_list(input_graphs_textfile)
     list_of_minors = read_file_into_list(input_minors_textfile)
-    list_of_graphs_with_no_minors = []
     list_of_graphs_with_minors = []
+    list_of_graphs_with_no_minors = []
 
     for test_graph in list_of_graphs_to_check: # Loop through the test graphs
         #print("Test Graph: " + str(test_graph))
@@ -67,13 +67,26 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile):
             else:
                 #print(str(test_graph) + " is a NOT minor of " + str(minor_graph))
                 list_of_graphs_with_no_minors.append(test_graph)
+        # END OF MINOR GRAPH FOR LOOP
+    # END OF TEST GRAPH FOR LOOP
+
+
     print("list_of_graphs_with_minors:")
     print(list_of_graphs_with_minors)
     print("list_of_graphs_with_no_minors:")
     print(list_of_graphs_with_no_minors)
 
 
-
+    # Write the output to the files
+    with open(r'with.txt', 'w') as fp:
+        for item in list_of_graphs_with_minors:
+            # write each item on a new line
+            fp.write("%s\n" % item)
+    with open(r'without.txt', 'w') as fp:
+        for item in list_of_graphs_with_no_minors:
+            # write each item on a new line
+            fp.write("%s\n" % item)
+    # END file write
 
 
 # Run once in main
