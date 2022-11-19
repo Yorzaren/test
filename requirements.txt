@@ -1,1 +1,2 @@
 minorminer~=0.2.9
+networkx~=2.8.8

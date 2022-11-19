@@ -18,7 +18,7 @@
 # Import libraries
 import ast
 from minorminer import find_embedding  # There's no reason to reinvent the wheel if there's already a library
-import networkx as nx # Use to convert g6 into a list of points
+import networkx as nx  # Use to convert g6 into a list of points
 # End import
 
 
@@ -40,10 +40,17 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
     list_of_g6_graphs_with_minors = []
     list_of_g6_graphs_with_no_minors = []
 
+    SIZE_OF_GRAPHS_TO_CHECK = str(len(list_of_g6_graphs_to_check))
+    SIZE_OF_MINORS_TO_CHECK = str(len(list_of_g6_minors))
+    test_graph_index = 1
+    minor_graph_index = 1
+
     print("list_of_g6_graphs_to_check:")
     print(list_of_g6_graphs_to_check)
     print("list_of_g6_minors:")
     print(list_of_g6_minors)
+
+
 
     for g6_test_graph in list_of_g6_graphs_to_check:  # Loop through the test graphs
         #print("Test Graph: " + g6_test_graph)  # Is still in the form of g6 string compression
@@ -52,7 +59,7 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
         test_graph = list(g6_graph.edges())  # Should be in [(X, X)] form now which can be used by minorminer
         #print(test_graph)  # Print this to check that it is.
 
-        print("\n---Test Graph: " + g6_test_graph + " - " + str(test_graph))
+        print("\n---Test Graph ("+str(test_graph_index)+" of "+SIZE_OF_GRAPHS_TO_CHECK+"): " + g6_test_graph + " - " + str(test_graph))
 
         for g6_minor_graph in list_of_g6_minors: # For each of the test graphs, run through the minors and test if its in there.
             #print("Test Minor: " + g6_minor_graph)  # Is still in the form of g6 string compression
@@ -61,9 +68,9 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
             test_minor = list(g6_minor.edges())  # Should be in [(X, X)] form now which can be used by minorminer
             #print(test_minor)  # Print this to check that it is.
 
-            print("Test Minor: " + g6_minor_graph + " - " + str(test_minor))
+            print("Test Minor ("+str(minor_graph_index)+" of "+SIZE_OF_MINORS_TO_CHECK+"): " + g6_minor_graph + " - " + str(test_minor))
             if len(find_embedding(test_minor, test_graph)) > 0:
-                print(str(test_graph) + " is a minor of " + str(test_minor))
+                print("--> HIT: " + str(test_graph) + " is a minor of " + str(test_minor))
                 list_of_g6_graphs_with_minors.append(g6_test_graph)  # Add it to the list
                 # Then remove it because there's no reason to check it again
                 # Can't use remove in the loop because it will cause skipping.
@@ -72,8 +79,11 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
                 list_of_g6_graphs_to_check = [x for x in list_of_g6_graphs_to_check if not g6_test_graph]
                 break  # Make sure to break here to stop the minor for loop. If not, you're wasting time checking again.
                 # Basically you found the graph is a minor, so you remove it from the list and stop checking the minors.
-
+            # END OF IF
+            minor_graph_index += 1  # Increment
         # END OF MINOR GRAPH FOR LOOP
+        test_graph_index += 1  # Increment
+        minor_graph_index = 1  # Reset it for the other loops
     # END OF TEST GRAPH FOR LOOP
 
     # The remaining graphs in the list DON'T have minors
@@ -102,5 +112,6 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
 # Main method
 if __name__ == '__main__':
     # Just keep this here because it throws error when everything is commented out
-    print("Main Method of main.py reached")
+    print("Starting to sort the graphs")
     sort_graphs("graph4c.g6", "graph3c.g6")
+    #sort_graphs("graph3c.g6", "graph4c.g6")
