@@ -44,7 +44,6 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
     print(list_of_g6_graphs_to_check)
     print("list_of_g6_minors:")
     print(list_of_g6_minors)
-    print()
 
     for g6_test_graph in list_of_g6_graphs_to_check:  # Loop through the test graphs
         #print("Test Graph: " + g6_test_graph)  # Is still in the form of g6 string compression
@@ -53,7 +52,7 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
         test_graph = list(g6_graph.edges())  # Should be in [(X, X)] form now which can be used by minorminer
         #print(test_graph)  # Print this to check that it is.
 
-        print("---Test Graph: " + g6_test_graph + " - " + str(test_graph))
+        print("\n---Test Graph: " + g6_test_graph + " - " + str(test_graph))
 
         for g6_minor_graph in list_of_g6_minors: # For each of the test graphs, run through the minors and test if its in there.
             #print("Test Minor: " + g6_minor_graph)  # Is still in the form of g6 string compression
@@ -63,13 +62,15 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
             #print(test_minor)  # Print this to check that it is.
 
             print("Test Minor: " + g6_minor_graph + " - " + str(test_minor))
-            #FIXME: Issue where removing g6_test_graph stops all graphs from being checked
             if len(find_embedding(test_minor, test_graph)) > 0:
-                print(str(test_graph) + " is a minor of " + str(test_minor)+"\n")
+                print(str(test_graph) + " is a minor of " + str(test_minor))
                 list_of_g6_graphs_with_minors.append(g6_test_graph)  # Add it to the list
-                print(g6_test_graph)
-                #list_of_g6_graphs_to_check.remove(g6_test_graph)  # Then remove it because there's no reason to check it again
-                break  # Make sure to break here to stop the minor for loop.
+                # Then remove it because there's no reason to check it again
+                # Can't use remove in the loop because it will cause skipping.
+                # Instead, redefine the list without it
+                # SEE: https://stackoverflow.com/a/1207461
+                list_of_g6_graphs_to_check = [x for x in list_of_g6_graphs_to_check if not g6_test_graph]
+                break  # Make sure to break here to stop the minor for loop. If not, you're wasting time checking again.
                 # Basically you found the graph is a minor, so you remove it from the list and stop checking the minors.
 
         # END OF MINOR GRAPH FOR LOOP
