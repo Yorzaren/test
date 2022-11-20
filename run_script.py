@@ -1,5 +1,5 @@
 import argparse
-from graph6_converter import sort_graphs
+from graph6_sorter import sort_graphs
 
 parser = argparse.ArgumentParser()
 parser.add_argument("input-graphs", help="REQUIRED: The input file for graphs you wish to test")

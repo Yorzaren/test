@@ -2,13 +2,13 @@
 
     USE: sort_graphs(input_graphs_textfile, input_minors_textfile)
 
-    Code takes in .txt files to test
+    Code takes in .g6 files to test
 
 
-    Graphs are written in the form of [(0,1),(1,2),(2,3)] which would correspond to a triangle shapes graph
-    To have multiple graphs in a file separate them with a single line break DONT add a comma to the end of the line
+    Graphs are written in the g6 format which is compressed as a text string
+    We use networkx to decode them into form looking something like [(0,1),(1,2),(2,3)]
+    which can be used by minorminer.
 
-    SEE: squaregraphs.txt and mixedtest.txt
 
     The output is written into two files:
      - "with.txt" (graphs that have a minor in the given input file)
@@ -16,7 +16,6 @@
 """
 
 # Import libraries
-import ast
 from minorminer import find_embedding  # There's no reason to reinvent the wheel if there's already a library
 import networkx as nx  # Use to convert g6 into a list of points
 # End import
@@ -88,12 +87,12 @@ def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='
 
         test_graph_index += 1  # Increment
         minor_graph_index = 1  # Reset it for the other loops
-        if has_not_deleted:  # If something was deleted, don't move the index, otherwise move it.
+        if has_not_deleted:  # If something was deleted, don't move the index (a new item has taken the old index), otherwise move it.
             i += 1
 
     # END OF TEST GRAPH FOR LOOP
 
-    # The remaining graphs in the list DON'T have minors
+    # The remaining graphs in the list DON'T have minors    
     for graph in list_of_g6_graphs_to_check:
         list_of_g6_graphs_with_no_minors.append(graph)
     # END OF FOR LOOP

@@ -11,7 +11,7 @@ How you originally generated the correct data: (DON'T RUN AGAIN)
 
 """
 import unittest
-from graph6_converter import sort_graphs, read_file_into_g6_list
+from graph6_sorter import sort_graphs, read_file_into_g6_list
 
 
 class TestCheckGraphOutputs(unittest.TestCase):
