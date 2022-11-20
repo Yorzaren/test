@@ -40,8 +40,8 @@ def loop(file, show_graph=False):
 if __name__ == '__main__':
     #test = readfile("with.txt")
     #loop("without.txt", show_graph=True)
-    loop("with.txt", show_graph=True)
+    #loop("with.txt", show_graph=True)
     #loop("k3,3.g6", show_graph=True)
 
     #info_graph("FCXjW", show_graph=True)
-    #info_graph("ETmw", show_graph=True)
+    info_graph("ECR_", show_graph=True)

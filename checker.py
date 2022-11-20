@@ -55,6 +55,10 @@ class TestCheckGraphOutputs(unittest.TestCase):
         self.assertEqual(test_without, correct_without)
         # pc prefix means possibly correct, for some reason it not aligning with the data from the site, but it makes
         # the correct amount of "planar" graphs... Looking at the rejects, those seem correct.
+        # Actually, I take that back. If,they are the same things then nothing should be in without.txt
+        # Run from the console...
+        # python run_script.py "g6/graph6c.g6", "g6/forbidden_planar_minors.g6" --output-with "graphswithminors.g6" --output-without "graphswithoutminors.g6"
+        # python run_script.py "graphswithoutminors.g6", "g6/planar_conn.6.g6"
 
 
 if __name__ == '__main__':
