@@ -51,5 +51,5 @@ python run_script.py "g6/graph4c.g6", "g6/graph3c.g6"
 Optional define the name of the output files. 
 
 ```
-python run_script.py "g6/graph4c.g6", "g6/graph3c.g6" --output-with "graphswithminors.g6" --output-without "graphswithoutminors.g6"
+python run_script.py "g6/graph4c.g6" "g6/graph3c.g6" --output-with "graphswithminors.g6" --output-without "graphswithoutminors.g6"
 ```
