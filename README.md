@@ -14,7 +14,14 @@ https://users.cecs.anu.edu.au/~bdm/data/graphs.html
 
 https://pallini.di.uniroma1.it/
 
-geng -C 11 15:34
+
+### Graphs
+
+Assume the graphs in the g6 folder are from graph examples link.
+
+k5 graph = `geng -C 5 10`
+
+Graphs with 11 vertices and 15 - 34 edges `geng -C 11 15:34`
 
 ## Usage OUTDATED:
 
