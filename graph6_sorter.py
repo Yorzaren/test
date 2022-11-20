@@ -120,5 +120,6 @@ if __name__ == '__main__':
     # Just keep this here because it throws error when everything is commented out
     print("Starting to sort the graphs")
     #sort_graphs("g6/graph4c.g6", "g6/graph3c.g6")
-    sort_graphs("g6/graph7.g6", "g6/planar_conn.6.g6")
+    #sort_graphs("g6/graph7.g6", "g6/planar_conn.6.g6")
     #sort_graphs("g6/graph3c.g6", "g6/graph4c.g6")
+    sort_graphs("g6/graph6c.g6", "forbidden_planar_minors.g6")

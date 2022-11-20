@@ -27,6 +27,7 @@ def info_graph(graph_data,  show_graph=False):
     if get_num_edges(g6_graph) >= 5:  # Change this to reflect things logically
         print(g6_graph)
         if show_graph:
+            plt.title(graph_data)
             nx.draw(g6_graph, with_labels=True, font_weight='bold')
             plt.show()
 
@@ -38,6 +39,9 @@ def loop(file, show_graph=False):
 
 if __name__ == '__main__':
     #test = readfile("with.txt")
-    loop("without.txt", show_graph=True)
+    #loop("without.txt", show_graph=True)
+    loop("with.txt", show_graph=True)
+    #loop("k3,3.g6", show_graph=True)
 
     #info_graph("FCXjW", show_graph=True)
+    #info_graph("ETmw", show_graph=True)

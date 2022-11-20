@@ -4,10 +4,10 @@ Run logical tests to make sure I haven't broken anything when I changed the code
 
 How you originally generated the correct data: (DON'T RUN AGAIN)
 
-    #sort_graphs("graph4c.g6", "graph3c.g6", "4vertex_graph_with_3_conn_minors.txt", "4vertex_graph_without_3_conn_minors.txt")
-    #sort_graphs("graph3c.g6", "graph4c.g6", "3vertex_graph_with_4_conn_minors.txt" , "3vertex_graph_without_4_conn_minors.txt")
-    #sort_graphs("graph7.g6", "planar_conn.6.g6", "pc_7vertex_graph_with_6_conn_planar_minors.txt", "pc_7vertex_graph_without_6_conn_planar_minors.txt")
-
+    #sort_graphs("g6/graph4c.g6", "g6/graph3c.g6", "4vertex_graph_with_3_conn_minors.txt", "4vertex_graph_without_3_conn_minors.txt")
+    #sort_graphs("g6/graph3c.g6", "g6/graph4c.g6", "3vertex_graph_with_4_conn_minors.txt" , "3vertex_graph_without_4_conn_minors.txt")
+    #sort_graphs("g6/graph7.g6", "g6/planar_conn.6.g6", "pc_7vertex_graph_with_6_conn_planar_minors.txt", "pc_7vertex_graph_without_6_conn_planar_minors.txt")
+    sort_graphs("g6/graph6c.g6", "g6/forbidden_planar_minors.g6", "pc_6conn_graph_with_forbidden_planar_minors.txt", "pc_6conn_graph_without_forbidden_planar_minors.txt")
 
 """
 import unittest
