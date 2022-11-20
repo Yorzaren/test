@@ -119,7 +119,7 @@ if __name__ == '__main__':
 
 
     # Command sort_graphs(input_graphs_textfile, input_minors_textfile)
-    #sort_graphs("Graphs/squaregraphs.txt", "Graphs/trianglegraphs.txt")
+    sort_graphs("Graphs/squaregraphs.txt", "Graphs/trianglegraphs.txt")
     # A square graph has a minor of a triangle so both graphs should be in the with.txt
 
     #sort_graphs("Graphs/squaregraphs.txt", "Graphs/graphb.txt")
