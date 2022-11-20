@@ -1,6 +1,8 @@
 # Dont upload the output files
 with.txt
 without.txt
+with.g6
+without.g6
 
 .idea
 
