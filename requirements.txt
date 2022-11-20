@@ -1,2 +1,3 @@
 minorminer~=0.2.9
 networkx~=2.8.8
+matplotlib~=3.6.2
