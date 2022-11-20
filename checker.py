@@ -19,8 +19,8 @@ class TestCheckGraphOutputs(unittest.TestCase):
         sort_graphs("graph4c.g6", "graph3c.g6")
         test_with = read_file_into_g6_list("with.txt")
         test_without = read_file_into_g6_list("without.txt")
-        correct_with = read_file_into_g6_list("4vertex_graph_with_3_conn_minors.txt")
-        correct_without = read_file_into_g6_list("4vertex_graph_without_3_conn_minors.txt")
+        correct_with = read_file_into_g6_list("tests/4vertex_graph_with_3_conn_minors.txt")
+        correct_without = read_file_into_g6_list("tests/4vertex_graph_without_3_conn_minors.txt")
         self.assertEqual(test_with, correct_with)
         self.assertEqual(test_without, correct_without)
         # check that a 4c graph are minors of 3c graphs; All things 4c are also 3c
@@ -29,8 +29,8 @@ class TestCheckGraphOutputs(unittest.TestCase):
         sort_graphs("graph3c.g6", "graph4c.g6")
         test_with = read_file_into_g6_list("with.txt")
         test_without = read_file_into_g6_list("without.txt")
-        correct_with = read_file_into_g6_list("3vertex_graph_with_4_conn_minors.txt")
-        correct_without = read_file_into_g6_list("3vertex_graph_without_4_conn_minors.txt")
+        correct_with = read_file_into_g6_list("tests/3vertex_graph_with_4_conn_minors.txt")
+        correct_without = read_file_into_g6_list("tests/3vertex_graph_without_4_conn_minors.txt")
         self.assertEqual(test_with, correct_with)
         self.assertEqual(test_without, correct_without)
         # Check that 3c are not minors of 4c graphs.
@@ -39,8 +39,8 @@ class TestCheckGraphOutputs(unittest.TestCase):
         sort_graphs("graph7.g6", "planar_conn.6.g6")
         test_with = read_file_into_g6_list("with.txt")
         test_without = read_file_into_g6_list("without.txt")
-        correct_with = read_file_into_g6_list("pc_7vertex_graph_with_6_conn_planar_minors.txt")
-        correct_without = read_file_into_g6_list("pc_7vertex_graph_without_6_conn_planar_minors.txt")
+        correct_with = read_file_into_g6_list("tests/pc_7vertex_graph_with_6_conn_planar_minors.txt")
+        correct_without = read_file_into_g6_list("tests/pc_7vertex_graph_without_6_conn_planar_minors.txt")
         self.assertEqual(test_with, correct_with)
         self.assertEqual(test_without, correct_without)
         # pc prefix means possibly correct, I'm not 100% sure the data is correct. But I have checked it some...
