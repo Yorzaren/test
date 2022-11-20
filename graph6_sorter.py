@@ -11,8 +11,8 @@
 
 
     The output is written into two files:
-     - "with.txt" (graphs that have a minor in the given input file)
-     - "without.txt" (graphs without a minor in the given input file)
+     - "with.g6" (graphs that have a minor in the given input file)
+     - "without.g6" (graphs without a minor in the given input file)
 """
 
 # Import libraries
@@ -32,7 +32,7 @@ def read_file_into_g6_list(file_name):  # Example: graphs.g6
     return data  # Return data which should be an array of g6 bits
 
 
-def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='with.txt', output_without_file='without.txt'):
+def sort_graphs(input_graphs_textfile, input_minors_textfile, output_with_file='with.g6', output_without_file='without.g6'):
     # Without the output_with_file or output_without_file specified it will default to those values
     list_of_g6_graphs_to_check = read_file_into_g6_list(input_graphs_textfile)
     list_of_g6_minors = read_file_into_g6_list(input_minors_textfile)
