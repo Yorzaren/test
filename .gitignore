@@ -4,6 +4,8 @@ without.txt
 with.g6
 without.g6
 
+/tests/test_output/
+
 .idea
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij
