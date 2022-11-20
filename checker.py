@@ -16,7 +16,7 @@ from graph6_converter import sort_graphs, read_file_into_g6_list
 
 class TestCheckGraphOutputs(unittest.TestCase):
     def test_4c_to_3c(self):
-        sort_graphs("graph4c.g6", "graph3c.g6")
+        sort_graphs("g6/graph4c.g6", "g6/graph3c.g6")
         test_with = read_file_into_g6_list("with.txt")
         test_without = read_file_into_g6_list("without.txt")
         correct_with = read_file_into_g6_list("tests/4vertex_graph_with_3_conn_minors.txt")
@@ -26,7 +26,7 @@ class TestCheckGraphOutputs(unittest.TestCase):
         # check that a 4c graph are minors of 3c graphs; All things 4c are also 3c
 
     def test_3c_to_4c(self):
-        sort_graphs("graph3c.g6", "graph4c.g6")
+        sort_graphs("g6/graph3c.g6", "g6/graph4c.g6")
         test_with = read_file_into_g6_list("with.txt")
         test_without = read_file_into_g6_list("without.txt")
         correct_with = read_file_into_g6_list("tests/3vertex_graph_with_4_conn_minors.txt")
@@ -36,7 +36,7 @@ class TestCheckGraphOutputs(unittest.TestCase):
         # Check that 3c are not minors of 4c graphs.
 
     def test_7vertex_to6_conn_planar(self):
-        sort_graphs("graph7.g6", "planar_conn.6.g6")
+        sort_graphs("g6/graph7.g6", "g6/planar_conn.6.g6")
         test_with = read_file_into_g6_list("with.txt")
         test_without = read_file_into_g6_list("without.txt")
         correct_with = read_file_into_g6_list("tests/pc_7vertex_graph_with_6_conn_planar_minors.txt")
