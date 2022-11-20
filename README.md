@@ -23,7 +23,7 @@ k5 graph = `geng -C 5 10`
 
 Graphs with 11 vertices and 15 - 34 edges `geng -C 11 15:34`
 
-## Usage OUTDATED:
+## Usage:
 
 Clone the code on to your machine:
 ```
