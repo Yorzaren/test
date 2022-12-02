@@ -15,11 +15,10 @@ from graph6_sorter import sort_graphs, read_file_into_g6_list
 import os
 import glob
 
-
+"""
 # FORCE the test_output to be clean from the prior tests
 @pytest.fixture(autouse=True)
 def run_before_and_after_tests():
-    """Fixture to execute asserts before and after a test is run"""
     # Setup: fill with any logic you want
     files = glob.glob('tests/test_output/*')
     for f in files:
@@ -31,7 +30,7 @@ def run_before_and_after_tests():
     files = glob.glob('tests/test_output/*')
     for f in files:
         os.remove(f)
-
+"""
 
 def test_4c_to_3c():
     sort_graphs("g6/graph4c.g6", "g6/graph3c.g6", "tests/test_output/4c_to_3c_W.g6", "tests/test_output/4c_to_3cWO.g6")
