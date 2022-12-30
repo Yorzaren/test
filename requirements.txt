@@ -1,3 +1,0 @@
-minorminer~=0.2.9
-networkx~=2.6.3
-matplotlib~=3.5.3
